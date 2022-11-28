@@ -1,0 +1,5 @@
+# direnv files
+.envrc
+
+# VS Code
+.vscode/
