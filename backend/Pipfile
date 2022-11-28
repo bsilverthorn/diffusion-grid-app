@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+itsdangerous = "==2.1.2"
+pydantic = "==1.10.2"
+requests = "==2.26.0"
+fastapi = "==0.87.0"
+mangum = "==0.16.0"
+typing-extensions = "==4.4.0"
+
+[dev-packages]
+boto3 = "*"
+ipython = "*"
+uvicorn = "==0.20.0"
+
+[requires]
+python_version = "3.9"
+python_full_version = "3.9.15"

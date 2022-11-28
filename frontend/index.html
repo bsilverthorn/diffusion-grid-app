@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diffusion Grid</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=David+Libre&family=Inter:wght@300&display=swap" rel="stylesheet">
+<script type="module">
+import App from './src/App.vue';
+import Fail from './src/Fail.vue';
+import { createApp } from 'vue';
+import './src/main.css';
+
+// prepare to display errors
+const fail = createApp(Fail);
+const failInstance = fail.mount('#fail');
+
+window.addEventListener(
+    'unhandledrejection',
+    event => {
+        console.error("unhandled rejection", event);
+
+        failInstance.show();
+    },
+);
+
+// then mount the main interface
+const app = createApp(App);
+
+app.config.globalProperties.appSettings = {
+    apiRoot: '/api',
+};
+app.config.errorHandler = (error, instance, info) => {
+    console.log("unhandled error", error, instance, info);
+
+    failInstance.show();
+};
+
+app.mount('#app');
+</script>
+</head>
+<body class="bg-stone-50">
+<div id="app"></div>
+<div id="fail"></div>
+</body>
+</html>
