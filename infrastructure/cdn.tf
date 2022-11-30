@@ -2,7 +2,7 @@ data "aws_region" "current" {
 }
 
 locals {
-  cloudfront_index_origin_id = "${replace(var.name_stub, "_", "-")}-index"
+  cloudfront_static_origin_id = "${replace(var.name_stub, "_", "-")}-static"
   cloudfront_api_origin_id   = "${replace(var.name_stub, "_", "-")}-api"
 }
 
@@ -15,7 +15,7 @@ resource "aws_cloudfront_origin_access_control" "grid" {
 
 resource "aws_cloudfront_distribution" "grid" {
   origin {
-    origin_id                = local.cloudfront_index_origin_id
+    origin_id                = local.cloudfront_static_origin_id
     domain_name              = aws_s3_bucket.frontend.bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.grid.id
   }
@@ -46,7 +46,7 @@ resource "aws_cloudfront_distribution" "grid" {
   default_cache_behavior {
     allowed_methods        = ["GET", "HEAD", "OPTIONS"]
     cached_methods         = ["GET", "HEAD"]
-    target_origin_id       = local.cloudfront_index_origin_id
+    target_origin_id       = local.cloudfront_static_origin_id
     viewer_protocol_policy = "redirect-to-https"
 
     forwarded_values {
