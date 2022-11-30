@@ -76,12 +76,12 @@ signer = Signer(key=settings.diffgrid_signing_key)
 def get_prompts():
     unsigned_prompts = [
         "fantasy wizard, portrait, cartoon illustration, colorful",
-        "fantasy witch, portrait, cartoon illustration, colorful",
-        "80s science fiction spacecraft, artistic, john berkey, john harris",
-        "beautiful landscape, artstation, volumetric light, high detail, perfect",
-        "space through a telescope, astrophotography, high resolution, hubble",
-        "lion looking at the camera, portrait, 35mm, national geographic",
-        "british frigates at anchor in the Channel, golden hour, oil on canvas, no frame",
+        "detailed cityscape, isometric, 3d, pixel art",
+        "80s science fiction spacecraft, artistic, detailed, greebling, john berkey, john harris",
+        "nature scene, wildlife, watercolor, realistic",
+        "adventure game, myst, riven, interior, intricate, colorful, blue sky",
+        "universe, astronomy, astrophotography, high resolution, hubble telescope, detailed",
+        "british frigates at sea, square-rigged, golden hour, oil on canvas",
     ]
 
     return [
