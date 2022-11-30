@@ -75,18 +75,14 @@ export default {
 
             this.loadAbort = new AbortController();
 
-            fetch(
-                `${this.appSettings.apiRoot}/diffusions?` + requestArgs,
+            this.api.post(
+                '/diffusions?' + requestArgs,
+                requestBody,
                 {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(requestBody),
+                    params: requestArgs,
                     signal: this.loadAbort.signal,
                 },
             )
-            .then((response) => response.json())
             .then((data) => {
                 if(data['call_id'] !== undefined) {
                     return this.checkRequest(data['call_id'], this.loadAbort.signal);
@@ -111,13 +107,12 @@ export default {
             });
         },
         checkRequest(callId, abortSignal) {
-            return fetch(
-                `${this.appSettings.apiRoot}/diffusions/${callId}`,
+            return this.api.get(
+                `/diffusions/${callId}`,
                 {
                     signal: abortSignal,
                 },
             )
-            .then((response) => response.json())
             .then((data) => {
                 if(data['call_id'] !== undefined) {
                     return new Promise(resolve => setTimeout(resolve, 1000))

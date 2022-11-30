@@ -12,32 +12,24 @@
 import App from './src/App.vue';
 import Fail from './src/Fail.vue';
 import { createApp } from 'vue';
+import { DGAPI } from './src/api.js';
 import './src/main.css';
 
 // prepare to display errors
 const fail = createApp(Fail);
 const failInstance = fail.mount('#fail');
 
-window.addEventListener(
-    'unhandledrejection',
-    event => {
-        console.error("unhandled rejection", event);
+function errorListener(error, instance, info) {
+    console.error("unhandled error", error, instance, info);
 
-        failInstance.show();
-    },
-);
+    failInstance.show();
+}
 
 // then mount the main interface
 const app = createApp(App);
 
-app.config.globalProperties.appSettings = {
-    apiRoot: '/api',
-};
-app.config.errorHandler = (error, instance, info) => {
-    console.log("unhandled error", error, instance, info);
-
-    failInstance.show();
-};
+app.config.errorHandler = errorListener;
+app.config.globalProperties.api = new DGAPI('/api', errorListener);
 
 app.mount('#app');
 </script>

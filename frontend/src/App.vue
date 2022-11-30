@@ -82,8 +82,7 @@ export default {
         },
     },
     mounted() {
-        fetch(`${this.appSettings.apiRoot}/prompts`)
-            .then((response) => response.json())
+        return this.api.get('/prompts')
             .then((data) => { this.prompts = data; });
     },
 };
