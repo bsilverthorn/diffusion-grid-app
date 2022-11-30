@@ -58,7 +58,7 @@ resource "aws_cloudfront_distribution" "grid" {
     }
 
     min_ttl     = 0
-    default_ttl = 3600
+    default_ttl = 86400
     max_ttl     = 86400
   }
 
@@ -77,9 +77,7 @@ resource "aws_cloudfront_distribution" "grid" {
       }
     }
 
-    min_ttl     = 0
-    default_ttl = 3600
-    max_ttl     = 86400
+    max_ttl = 0
   }
 
   viewer_certificate {
