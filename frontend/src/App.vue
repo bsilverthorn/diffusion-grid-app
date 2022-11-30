@@ -169,7 +169,7 @@ export default {
 </div>
 
 <div class="row-start-4 col-start-2 col-end-6 m-[1vmin] relative">
-    <div class="grid place-items-center h-full text-purple-800 leading-relaxed text-center text-[3vmin] p-[2vmin] font-serif">
+    <div class="grid place-items-center h-full text-slate-700 leading-relaxed text-center text-[3vmin] p-[2vmin] font-serif">
         “{{ prompt.text }}”
     </div>
     <div class="absolute bottom-0 right-0">
