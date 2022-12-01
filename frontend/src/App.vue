@@ -40,7 +40,7 @@ export default {
         },
     },
     methods: {
-        mainBranchLoaded(branch, signatures) {
+        mainBranchLoaded(branch) {
             this.branchPoints = branch.slice().sort((a, b) => b.timestep - a.timestep);
         },
         changePrompt(increment) {
