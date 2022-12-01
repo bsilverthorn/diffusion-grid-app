@@ -12,6 +12,7 @@ export default {
             branchPoints: [],
             seed: 42,
             seedIncrement: 16,
+            seedAdditions: {},
             hoveredBranch: undefined,
             hoveredTimestep: undefined,
             srcForce: undefined,
@@ -47,7 +48,8 @@ export default {
             this.srcForce = undefined;
             this.promptIndex += increment;
         },
-        sideBranchClick(branch, src) {
+        sideBranchClick(branch, src, row, column) {
+            // change trunk latents to match branch
             const branchByTimestep = Object.fromEntries(
                 branch.map(point => [point.timestep, point])
             );
@@ -64,6 +66,18 @@ export default {
                     return point;
                 }
             });
+
+            // clear previously updated seeds
+            for(const i in this.seedAdditions) {
+                if(i > row) {
+                    this.seedAdditions[i] = {};
+                }
+            }
+
+            // replace the clicked image
+            this.seedAdditions[row] ??= {};
+            this.seedAdditions[row][column] ??= 0;
+            this.seedAdditions[row][column] += 8192;
         },
         sideBranchHoverStart(branch, src, timestep) {
             this.srcHover = src;
@@ -74,6 +88,11 @@ export default {
             this.srcHover = undefined;
             this.hoveredBranch = undefined;
             this.hoveredTimestep = undefined;
+        },
+        getSeed(row, column) {
+            const seedAddition = this.seedAdditions[row]?.[column] ?? 0;
+
+            return this.seed + row * this.branchPoints.length + column + 1 + seedAddition;
         },
         incrementSeed() {
             this.branchPoints = [];
@@ -146,10 +165,10 @@ export default {
         :timestep="point.timestep"
         :latents="point.tensor"
         :signature="point.signature"
-        :seed="seed + i * branchPoints.length + j + 1"
+        :seed="getSeed(i, j)"
         :muted="hoveredTimestep !== undefined && hoveredTimestep > point.timestep"
         class="cursor-pointer"
-        @branch-click="sideBranchClick"
+        @branch-click="(branch, src) => sideBranchClick(branch, src, i, j)"
         @branch-hover-start="(branch, src) => sideBranchHoverStart(branch, src, point.timestep)"
         @branch-hover-stop="sideBranchHoverStop">
     </trajectory-image>
