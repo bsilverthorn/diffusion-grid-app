@@ -13,7 +13,7 @@ It's a simple visualization toy for [diffusion model](https://arxiv.org/pdf/2208
 It visualizes "paths not taken" during the denoising process.
 
 It's a toy because it was built for playing around and building a bit of
-intuition. It's not a tool for research or image discovery.
+intuition. It's not a tool for research or prompt development.
 
 Explanation
 -----------
