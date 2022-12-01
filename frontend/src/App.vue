@@ -101,8 +101,9 @@ export default {
         },
     },
     mounted() {
-        return this.api.get('/prompts')
-            .then((data) => { this.prompts = data; });
+        return this.api.get('/prompts').then(data => {
+            this.prompts = data;
+        });
     },
 };
 </script>
