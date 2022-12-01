@@ -65,6 +65,6 @@ interesting and kind of fun to play around with.
 (If you have pointers to any of these topics in the literature, please pass them
 along.)
 
-[^0]: Decisions of a nondeterministic scheduler, in this case DDIM with $\eta > 0$.
+[^0]: Decisions of a nondeterministic scheduler, in this case [DDIM](https://arxiv.org/pdf/2010.02502.pdf) with $\eta > 0$.
 
 [^1]: Later or earlier from the perspective of the denoising process, which sees larger timesteps before smaller.
