@@ -12,7 +12,7 @@ variable "frontend_domain" {
 }
 
 variable "backend_cache_days" {
-  default = 1
+  default = null
 }
 
 variable "app_backend_path" {
