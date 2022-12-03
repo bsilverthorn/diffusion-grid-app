@@ -2,6 +2,7 @@
 import TrajectoryImage from './TrajectoryImage.vue';
 
 export default {
+    name: 'App',
     components: {
         TrajectoryImage,
     },

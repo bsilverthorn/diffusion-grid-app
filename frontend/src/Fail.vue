@@ -1,5 +1,6 @@
 <script>
 export default {
+    name: 'Fail',
     data() {
         return {
             shown: false,
