@@ -76,7 +76,7 @@ signer = Signer(key=settings.diffgrid_signing_key)
 def get_prompts():
     unsigned_prompts = [
         "fantasy wizard, portrait, cartoon illustration, colorful",
-        "detailed cityscape, isometric, 3d, pixel art",
+        "detailed cityscape, isometric, 3d, pixel art, urbanism, vibrant",
         "80s science fiction spacecraft, artistic, detailed, greebling, john berkey, john harris",
         "nature scene, wildlife, watercolor, realistic",
         "adventure game, myst, riven, interior, intricate, colorful, blue sky",
