@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "object-hash": "^3.0.0",
+    "pinia": "^2.0.27",
     "vue": "^3.2.41"
   },
   "devDependencies": {
