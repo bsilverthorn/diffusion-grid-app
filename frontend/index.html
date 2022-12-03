@@ -9,13 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=David+Libre&family=Inter:wght@300&display=swap" rel="stylesheet">
 <script type="module">
-import App from './src/App.vue';
-import Fail from './src/Fail.vue';
-import { createApp } from 'vue';
-import { DGAPI } from './src/api.js';
-import './src/main.css';
-
 // prepare to display errors
+import Fail from './src/Fail.vue';
+
 const fail = createApp(Fail);
 const failInstance = fail.mount('#fail');
 
@@ -25,13 +21,34 @@ function errorListener(error, instance, info) {
     failInstance.show();
 }
 
+// prepare the root store
+import { createPinia } from 'pinia';
+import { DGAPI } from './src/api.js';
+
+const api = new DGAPI('/api', errorListener);
+const pinia = createPinia();
+
+pinia.use(() => ({ api, }));
+
 // then mount the main interface
+import App from './src/App.vue';
+import { createApp } from 'vue';
+import './src/main.css';
+
 const app = createApp(App);
 
 app.config.errorHandler = errorListener;
-app.config.globalProperties.api = new DGAPI('/api', errorListener);
+app.config.globalProperties.api = api;
 
+app.use(pinia);
 app.mount('#app');
+
+// and kick things off
+import { useGridStore } from './src/stores/grid';
+
+const gridStore = useGridStore(pinia);
+
+gridStore.load();
 </script>
 </head>
 <body class="bg-stone-50">
