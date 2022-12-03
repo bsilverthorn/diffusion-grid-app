@@ -1,11 +1,11 @@
 <script>
 import { useGridStore } from './stores/grid';
-import TrajectoryImage from './TrajectoryImage.vue';
+import GridImage from './GridImage.vue';
 
 export default {
     name: 'App',
     components: {
-        TrajectoryImage,
+        GridImage,
     },
     setup: () => ({
         gridStore: useGridStore(),
@@ -85,7 +85,7 @@ export default {
 
 <!-- grid images -->
 <template v-for="timestep in gridStore.timesteps" :key="timestep">
-    <trajectory-image
+    <grid-image
         v-for="(branch, j) in gridStore.branches[timestep]"
         :key="j"
         :image="branch.image"
@@ -95,15 +95,15 @@ export default {
         @select="branchSelect(timestep, j)"
         @hover-start="branchHoverStart(timestep, j)"
         @hover-stop="branchHoverStop">
-    </trajectory-image>
+    </grid-image>
 </template>
 
 <!-- trunk image -->
 <div class="relative row-start-4">
-    <trajectory-image
+    <grid-image
         :loading="gridStore.trunk.abort !== undefined"
         :image="hoveredBranch?.image ?? gridStore.trunk.image">
-    </trajectory-image>
+    </grid-image>
 </div>
 
 <!-- prompt and controls -->
