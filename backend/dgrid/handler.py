@@ -78,7 +78,7 @@ def get_prompts():
         "fantasy wizard, portrait, cartoon illustration, colorful",
         "detailed cityscape, isometric, 3d, pixel art, urbanism, vibrant",
         "80s science fiction spacecraft, artistic, detailed, greebling, john berkey, john harris",
-        "nature scene, wildlife, watercolor, realistic",
+        "forest, trees, butterflies, flowers, small animals, watercolor, beautiful",
         "adventure game, myst, riven, interior, intricate, colorful, blue sky",
         "universe, astronomy, astrophotography, high resolution, hubble telescope, detailed",
         "british frigates at sea, square-rigged, golden hour, oil on canvas",
