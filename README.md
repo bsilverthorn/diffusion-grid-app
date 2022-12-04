@@ -29,8 +29,8 @@ that trunk, i.e., sets of trajectories that are all identical up to a given
 timestep. Trajectories branching from later timesteps[^1] will be more similar
 than trajectories branching from earlier timesteps.
 
-This toy shows images produced by several trajectories branching from each of
-several different timesteps, along these lines:
+Diffusion Grid shows images produced by several trajectories branching from each of
+several different timesteps, e.g.:
 
 ```mermaid
   graph LR;
