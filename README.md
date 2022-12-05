@@ -35,22 +35,22 @@ several different timesteps, e.g.:
 ```mermaid
   graph LR;
       S[Initial] --> T0i[t = 1000]
-      T0i --> E0i[t = ...]
+      T0i --> E0i["t = …"]
       E0i --> T0j[t = 500]
-      T0j --> E0j[t = ...]
+      T0j --> E0j["t = …"]
       E0j --> I0[Trunk Image]
-      T0j --> E1j[t = ...]
+      T0j --> E1j["t = …"]
       E1j --> I1[Branch Image]
-      T0j --> E2j[t = ...]
-      E2j --> I2[Branch Image]
-      T0i --> E3i[t = ...]
+      T0j --> E2j["t = …"]
+      E2j --> I2["⋮"]
+      T0i --> E3i["t = …"]
       E3i --> T3j[t = 500]
-      T3j --> E3j[t = ...]
+      T3j --> E3j["t = …"]
       E3j --> I3[Branch Image]
-      T0i --> E4i[t = ...]
+      T0i --> E4i["t = …"]
       E4i --> T4j[t = 500]
-      T4j --> E4j[t = ...]
-      E4j --> I4[Branch Image]
+      T4j --> E4j["t = …"]
+      E4j --> I4["⋮"]
 ```
 
 Motivation
@@ -65,6 +65,6 @@ interesting and kind of fun to play around with.
 (If you have pointers to any of these topics in the literature, please pass them
 along.)
 
-[^0]: Decisions of a nondeterministic scheduler, in this case [DDIM](https://arxiv.org/pdf/2010.02502.pdf) with $\eta > 0$.
+[^0]: Under a nondeterministic scheduler like [DDIM](https://arxiv.org/pdf/2010.02502.pdf) with $\eta > 0$.
 
 [^1]: Later or earlier from the perspective of the denoising process, which sees larger timesteps before smaller.
