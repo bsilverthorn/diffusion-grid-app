@@ -81,7 +81,8 @@ def get_prompts():
         "forest, trees, butterflies, flowers, small animals, watercolor, beautiful",
         "adventure game, myst, riven, interior, intricate, colorful, blue sky",
         "universe, astronomy, astrophotography, high resolution, hubble telescope, detailed",
-        "british frigates at sea, square-rigged, golden hour, oil on canvas",
+        "sailboat at sea, stormclouds, detailed, oil on canvas",
+        "landscape photo, sunset, mountains, trees, 35mm film, slr, nikon, canon",
     ]
 
     return [
