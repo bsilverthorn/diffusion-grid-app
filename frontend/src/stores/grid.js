@@ -33,7 +33,7 @@ export const useGridStore = defineStore('grid', {
         load() {
             this.api.fetchPrompts().then(prompts => {
                 this.prompts = prompts.map(prompt => ({
-                    salts: { all: 1 },
+                    salts: { all: 1, grid: {} },
                     ...prompt,
                 }));
             })
@@ -120,20 +120,33 @@ export const useGridStore = defineStore('grid', {
 
             // regenerate affected branches
             this.reseedBranch(timestep, column);
-            this.loadBranchesAt(branch.trajectory.keys());
+            this.reseedBranchesAt(branch.trajectory.keys(), null);
         },
         reseedAll() {
             this.prompt.salts.all += 1;
+            this.prompt.salts.grid = {};
 
             this.loadTrunk();
         },
-        reseedBranch(timestep, column) {
+        reseedBranch(timestep, column, increment = 1) {
             const saltKey = this.getSaltKey(timestep, column);
 
-            this.prompt.salts[saltKey] ??= 0;
-            this.prompt.salts[saltKey] += 1;
+            if(increment === null) {
+                delete this.prompt.salts.grid[saltKey];
+            }
+            else {
+                this.prompt.salts.grid[saltKey] ??= 0;
+                this.prompt.salts.grid[saltKey] += increment;
+            }
 
             this.loadBranch(timestep, column);
+        },
+        reseedBranchesAt(timesteps, increment = 1) {
+            for (const t of timesteps) {
+                for (let i = 0; i < GRID_CONFIG.columns; ++i) {
+                    this.reseedBranch(t, i, increment);
+                }
+            }
         },
         getSaltKey(timestep, column) {
             return `b${timestep}x${column}`;
@@ -143,7 +156,7 @@ export const useGridStore = defineStore('grid', {
                 timestep,
                 column,
                 this.prompt.salts.all,
-                this.prompt.salts[this.getSaltKey(timestep, column)],
+                this.prompt.salts.grid[this.getSaltKey(timestep, column)],
             ]);
 
             return parseInt(hashed.slice(-8), 16);
