@@ -61,6 +61,7 @@ resource "aws_cloudfront_distribution" "grid" {
     min_ttl     = 0
     default_ttl = 86400
     max_ttl     = 86400
+    compress    = true
   }
 
   ordered_cache_behavior {
