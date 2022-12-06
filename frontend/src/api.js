@@ -54,8 +54,7 @@ export class DGAPI {
 
     fetchBranch(prompt, latents, timestep, seed, trajectoryAt) {
         const abort = new AbortController();
-
-        function check(callId) {
+        const check = (callId) => {
             return this.get(
                 `/diffusions/${callId}`,
                 {
@@ -94,7 +93,7 @@ export class DGAPI {
         )
         .then((data) => {
             if(data['call_id'] !== undefined) {
-                return check.bind(this)(data['call_id'], abort.signal);
+                return check(data['call_id'], abort.signal);
             }
             else {
                 return data;
