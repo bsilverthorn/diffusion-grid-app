@@ -10,6 +10,7 @@ requests = "==2.31.0"
 fastapi = "==0.87.0"
 mangum = "==0.17.0"
 typing-extensions = "==4.7.1"
+urllib3 = "<2.0"
 
 [dev-packages]
 boto3 = "*"
@@ -17,5 +18,5 @@ ipython = "*"
 uvicorn = "==0.23.0"
 
 [requires]
-python_version = "3.9"
-python_full_version = "3.9.15"
+python_version = "3.10"
+python_full_version = "3.10.8"
