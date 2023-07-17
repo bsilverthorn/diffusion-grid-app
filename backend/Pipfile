@@ -14,7 +14,7 @@ typing-extensions = "==4.7.1"
 [dev-packages]
 boto3 = "*"
 ipython = "*"
-uvicorn = "==0.20.0"
+uvicorn = "==0.23.0"
 
 [requires]
 python_version = "3.9"
