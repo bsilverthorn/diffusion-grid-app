@@ -35,5 +35,4 @@ jobs:
     - name: npm run build
       run: cd frontend && npm run build
     - name: terraform apply
-      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
