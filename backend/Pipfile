@@ -9,7 +9,7 @@ pydantic = "==1.10.11"
 requests = "==2.31.0"
 fastapi = "==0.87.0"
 mangum = "==0.16.0"
-typing-extensions = "==4.4.0"
+typing-extensions = "==4.7.1"
 
 [dev-packages]
 boto3 = "*"
