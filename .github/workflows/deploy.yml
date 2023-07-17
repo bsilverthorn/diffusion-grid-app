@@ -6,6 +6,7 @@ on:
 permissions:
   contents: read
 env:
+  TF_WORKSPACE: "${{ secrets.TF_WORKSPACE }}"
   TF_CLOUD_ORGANIZATION: "${{ secrets.TF_CLOUD_ORGANIZATION }}"
   TF_VAR_banana_api_key: "${{ secrets.BANANA_API_KEY }}"
   TF_VAR_banana_model_key: "${{ secrets.BANANA_MODEL_KEY }}"
