@@ -8,6 +8,10 @@ locals {
 
 resource "aws_s3_bucket" "cache" {
   bucket = "${replace(var.name_stub, "_", "-")}-cache"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "cache" {
