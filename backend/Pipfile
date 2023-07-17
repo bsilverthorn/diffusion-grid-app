@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 itsdangerous = "==2.1.2"
-pydantic = "==1.10.2"
+pydantic = "==1.10.11"
 requests = "==2.31.0"
 fastapi = "==0.87.0"
 mangum = "==0.16.0"
