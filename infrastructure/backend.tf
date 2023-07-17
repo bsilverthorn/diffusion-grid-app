@@ -168,7 +168,7 @@ resource "aws_lambda_function" "grid_request" {
   function_name = local.lambda_function_name
   role          = aws_iam_role.grid_request_execution.arn
   handler       = "dgrid.handler.handle_event"
-  runtime       = "python3.9"
+  runtime       = "python3.10"
   timeout       = 3 * 60
 
   environment {
