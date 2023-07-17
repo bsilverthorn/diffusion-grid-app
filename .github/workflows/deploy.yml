@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  id-token: write
 env:
   TF_WORKSPACE: "${{ secrets.TF_WORKSPACE }}"
   TF_CLOUD_ORGANIZATION: "${{ secrets.TF_CLOUD_ORGANIZATION }}"
