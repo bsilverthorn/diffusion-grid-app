@@ -11,7 +11,7 @@
   "dependencies": {
     "object-hash": "^3.0.0",
     "pinia": "^2.0.27",
-    "vue": "^3.2.41"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",
