@@ -58,7 +58,8 @@ variable "banana_api_url" {
 }
 
 variable "banana_api_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "banana_model_key" {
