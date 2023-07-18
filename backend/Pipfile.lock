@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cf54e25fdbc200a98e77dfe3d9dc41e6308c1ef5610ca31e0629b501b33059d1"
+            "sha256": "fbc99f662b83200d45374f02f870984013f10d69abab961094a4777933a929c1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -204,6 +204,17 @@
             "index": "pypi",
             "version": "==2.31.0"
         },
+        "sentry-sdk": {
+            "extras": [
+                "fastapi"
+            ],
+            "hashes": [
+                "sha256:6bdb25bd9092478d3a817cb0d01fa99e296aea34d404eac3ca0037faa5c2aa0a",
+                "sha256:dcd88c68aa64dae715311b5ede6502fd684f70d00a7cd4858118f0ba3153a3ae"
+            ],
+            "index": "pypi",
+            "version": "==1.28.1"
+        },
         "sniffio": {
             "hashes": [
                 "sha256:e60305c5e5d314f5389259b7f22aaa33d8f7dee49763119234af3755c55b9101",
@@ -254,19 +265,19 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:34f07b3fc2503240c0f58114cf3afea91295c7996d084991b78a278a56157c48",
-                "sha256:610369a7f984b58973c097ea649ec81976c04565d39a2d6d3edc280d23b0cb87"
+                "sha256:1f4b9c23dfcad910b6f8e74aac9fe507c1e75fcdd832e25ed2ff1e6d7a99cddf",
+                "sha256:92c0631ab91b4c5aa0e18a90b4d12df361723c6df1ef7e346db71f2ad0803ab3"
             ],
             "index": "pypi",
-            "version": "==1.28.3"
+            "version": "==1.28.4"
         },
         "botocore": {
             "hashes": [
-                "sha256:2aa27c75e62bfcf7900cb85283228fcb7df0fa1bdc2ae76dcee90788dd444934",
-                "sha256:744ce853cadc7ae87ba42ef6828194ddec97d606dd4d08b4dfe3d96d5001eb0c"
+                "sha256:1c14ac4521af707a7a407cee0e22695ce3e95c0f1a0c974e21cb25a3ce78a538",
+                "sha256:f9738a23b03c55c2958ebdee65273afeda80deaeefebe595887fc3251e48293a"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.31.3"
+            "version": "==1.31.4"
         },
         "click": {
             "hashes": [
