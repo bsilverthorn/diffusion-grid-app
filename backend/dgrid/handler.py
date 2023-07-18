@@ -61,6 +61,9 @@ class Settings(pydantic.BaseSettings):
     diffgrid_auth_header: Optional[str]
     diffgrid_root_path: str = "/api"
 
+    # sentry monitoring
+    sentry_dsn: Optional[AnyHttpUrl]
+
 api = FastAPI(title="Diffusion Grid API")
 settings = Settings.parse_obj({})
 banana = BananaAPI(
@@ -169,3 +172,20 @@ if "AWS_LAMBDA_FUNCTION_NAME" in os.environ:
     logger.setLevel(logging.INFO)
 
     handle_event = Mangum(api_root, lifespan="off")
+
+if settings.sentry_dsn is not None:
+    import sentry_sdk
+
+    from sentry_sdk.integrations.aws_lambda import AwsLambdaIntegration
+    from sentry_sdk.integrations.starlette import StarletteIntegration
+    from sentry_sdk.integrations.fastapi import FastApiIntegration
+
+    sentry_sdk.init(
+        dsn=settings.sentry_dsn,
+        integrations=[
+            AwsLambdaIntegration(timeout_warning=True),
+            StarletteIntegration(),
+            FastApiIntegration(),
+        ],
+        traces_sample_rate=1.0,
+    )
