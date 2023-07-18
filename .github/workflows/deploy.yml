@@ -11,6 +11,9 @@ env:
   TF_CLOUD_ORGANIZATION: "${{ secrets.TF_CLOUD_ORGANIZATION }}"
   TF_VAR_banana_api_key: "${{ secrets.BANANA_API_KEY }}"
   TF_VAR_banana_model_key: "${{ secrets.BANANA_MODEL_KEY }}"
+  SENTRY_AUTH_TOKEN: "${{ secrets.SENTRY_AUTH_TOKEN }}"
+  TF_VAR_sentry_organization_slug: "${{ secrets.SENTRY_ORGANIZATION_SLUG }}"
+  TF_VAR_sentry_team_slug: "${{ secrets.SENTRY_TEAM_SLUG }}"
 jobs:
   deploy-app:
     name: 'Deploy'
