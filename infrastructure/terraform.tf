@@ -3,7 +3,16 @@ terraform {
 
   cloud {
   }
+
+  required_providers {
+    sentry = {
+      source = "jianyuan/sentry"
+    }
+  }
 }
 
 provider "aws" {
+}
+
+provider "sentry" {
 }
