@@ -58,9 +58,22 @@ variable "banana_api_url" {
 }
 
 variable "banana_api_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "banana_model_key" {
+  type = string
+}
+
+#
+# SENTRY
+#
+
+variable "sentry_organization_slug" {
+  type = string
+}
+
+variable "sentry_team_slug" {
   type = string
 }

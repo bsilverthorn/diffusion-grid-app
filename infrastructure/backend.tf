@@ -152,6 +152,32 @@ resource "aws_lambda_permission" "lambda_permission" {
 }
 
 #
+# SENTRY ERROR REPORTING
+#
+
+data "sentry_organization" "main" {
+  slug = var.sentry_organization_slug
+}
+
+data "sentry_team" "main" {
+  organization = data.sentry_organization.main.id
+  slug         = var.sentry_team_slug
+}
+
+resource "sentry_project" "main" {
+  organization = data.sentry_team.main.organization
+  teams        = [data.sentry_team.main.id]
+  name         = "Diffusion Grid"
+  platform     = "python-awslambda"
+}
+
+resource "sentry_key" "lambda" {
+  organization = data.sentry_team.main.organization
+  project      = sentry_project.main.id
+  name         = "AWS Lambda"
+}
+
+#
 # LAMBDA FUNCTION
 #
 
@@ -183,6 +209,7 @@ resource "aws_lambda_function" "grid_request" {
       DIFFGRID_SIGNING_KEY  = random_password.signing_key.result,
       DIFFGRID_CACHE_BUCKET = aws_s3_bucket.cache.id
       DIFFGRID_AUTH_HEADER  = local.lambda_auth_header
+      SENTRY_DSN            = sentry_key.lambda.dsn_public
     }
   }
 
