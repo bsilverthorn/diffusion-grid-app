@@ -13,6 +13,8 @@ updates:
     ignore:
       - dependency-name: "urllib3"
         versions: [">= 2"] # boto incompatibility
+      - dependency-name: "pydantic"
+        versions: [">= 2"] # requires migration from v1
   - package-ecosystem: "terraform"
     directory: "/infrastructure"
     schedule:
