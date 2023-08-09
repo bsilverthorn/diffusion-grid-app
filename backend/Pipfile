@@ -10,7 +10,7 @@ requests = "==2.31.0"
 fastapi = "==0.101.0"
 mangum = "==0.17.0"
 typing-extensions = "==4.7.1"
-urllib3 = "<2.0"
+urllib3 = "<3.0"
 sentry-sdk = {version = "*", extras = ["fastapi"]}
 
 [dev-packages]
