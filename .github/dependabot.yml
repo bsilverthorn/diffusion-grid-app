@@ -10,6 +10,9 @@ updates:
     directory: "/backend"
     schedule:
       interval: "monthly"
+    ignore:
+      - dependency-name: "urllib3"
+        versions: [">= 2"] # boto incompatibility
   - package-ecosystem: "terraform"
     directory: "/infrastructure"
     schedule:
