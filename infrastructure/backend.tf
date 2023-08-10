@@ -56,9 +56,10 @@ resource "null_resource" "lambda_package" {
       mkdir -p '${local.lambda_tmp}/{backend,pipenv}'
       cp -r '${local.backend_path}' '${local.lambda_tmp}/backend'
       cd '${local.lambda_tmp}'
-      ${var.system_pip} install pipenv -t pipenv
+      python -m venv venv-pipenv
+      venv-pipenv/bin/pip install pipenv
       cd backend
-      ../pipenv/bin/pipenv requirements > requirements.txt
+      ../venv-pipenv/bin/pipenv requirements > requirements.txt
       ${var.system_pip} install -r requirements.txt -t .
       ${var.system_zip} --quiet -roX '${local.lambda_zip}' .
       rm -r '${local.lambda_tmp}'
