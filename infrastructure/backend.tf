@@ -53,9 +53,13 @@ resource "null_resource" "lambda_package" {
     command = <<-EOF
       set -eux
       rm -r '${local.lambda_tmp}' '${local.lambda_zip}' || true
-      cp -r '${local.backend_path}' '${local.lambda_tmp}'
-      ${var.system_pip} install -r '${local.lambda_tmp}/requirements.txt' -t '${local.lambda_tmp}'
+      mkdir -p '${local.lambda_tmp}/{backend,pipenv}'
+      cp -r '${local.backend_path}' '${local.lambda_tmp}/backend'
       cd '${local.lambda_tmp}'
+      ${var.system_pip} install pipenv -t pipenv
+      cd backend
+      ../pipenv/bin/pipenv requirements > requirements.txt
+      ${var.system_pip} install -r requirements.txt -t .
       ${var.system_zip} --quiet -roX '${local.lambda_zip}' .
       rm -r '${local.lambda_tmp}'
     EOF
