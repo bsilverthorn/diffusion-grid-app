@@ -54,7 +54,7 @@ variable "file_extensions" {
 #
 
 variable "banana_api_url" {
-  default = "https://api.banana.dev"
+  type = string
 }
 
 variable "banana_api_key" {
