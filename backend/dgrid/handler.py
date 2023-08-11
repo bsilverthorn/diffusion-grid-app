@@ -114,41 +114,24 @@ def run_diffusion(run_inputs: ModelRunInputs, signature: str):
     if cached is not None:
         return cached
 
-    # cache miss; start a fresh diffusion run
+    # cache miss; make (and store) a fresh diffusion run
     model_inputs = ModelInputs(cache_key=cache_key, run_inputs=run_inputs)
-    (message, call_id) = banana.request_start(model_inputs)
+    model_outputs = banana.infer(model_inputs)
+    run_outputs = model_outputs.run_outputs
+    image_info = GridImageInfo(
+        diffusion=run_outputs,
+        signatures={
+            v.timestep: signer.sign_critical_inputs(
+                prompt=model_outputs.prompt,
+                latents=v.tensor,
+            )
+            for v in run_outputs.trajectory
+        },
+    )
 
-    return GridRunStatus(message=message, call_id=call_id)
+    cache.store(CacheKey(model_outputs.cache_key), image_info)
 
-@api.get("/diffusions/{call_id}", response_model=Union[GridImageInfo, GridRunStatus])
-def get_diffusion(call_id: str):
-    # check run status with banana; we may get a "still running" response,
-    # may get model outputs, or may time out (and assume we're still running)
-    try:
-        (message, model_outputs) = banana.request_check(call_id)
-    except TimeoutError:
-        message = "timeout; probably running"
-        model_outputs = None
-
-    if model_outputs is None:
-        return GridRunStatus(call_id=call_id, message=message)
-    else:
-        run_outputs = model_outputs.run_outputs
-
-        image_info = GridImageInfo(
-            diffusion=run_outputs,
-            signatures={
-                v.timestep: signer.sign_critical_inputs(
-                    prompt=model_outputs.prompt,
-                    latents=v.tensor,
-                )
-                for v in run_outputs.trajectory
-            },
-        )
-
-        cache.store(CacheKey(model_outputs.cache_key), image_info)
-
-        return image_info
+    return image_info
 
 if settings.diffgrid_root_path != "":
     api_root = FastAPI()

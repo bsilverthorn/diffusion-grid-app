@@ -54,25 +54,6 @@ export class DGAPI {
 
     fetchBranch(prompt, latents, timestep, seed, trajectoryAt) {
         const abort = new AbortController();
-        const check = (callId) => {
-            return this.get(
-                `/diffusions/${callId}`,
-                {
-                    signal: abort.signal,
-                },
-            )
-            .then((data) => {
-                if(data['call_id'] !== undefined) {
-                    const timeout = new Promise(resolve => setTimeout(resolve, 1600));
-
-                    return timeout.then(() => check(callId));
-                }
-                else {
-                    return data;
-                }
-            });
-        };
-
         const requestBody = {
             'prompt': prompt.text,
             'seed': seed,
@@ -91,14 +72,6 @@ export class DGAPI {
                 signal: abort.signal,
             },
         )
-        .then((data) => {
-            if(data['call_id'] !== undefined) {
-                return check(data['call_id'], abort.signal);
-            }
-            else {
-                return data;
-            }
-        })
         .then((data) => {
             return {
                 image: data['diffusion']['image'],
