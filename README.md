@@ -1,7 +1,9 @@
 Diffusion Grid
 ==============
 
-~~See: [**diffusion-grid.silverthorn.blog**](https://diffusion-grid.silverthorn.blog)~~ [offline]
+_**Offline as of August 2023**. Fun toy, not something to maintain indefinitely. (And the serverless GPU landscape keeps changing.)_
+
+~~See: [**diffusion-grid.silverthorn.blog**](https://diffusion-grid.silverthorn.blog)~~
 
 See also: [@bsilverthorn/diffusion-grid-banana](https://github.com/bsilverthorn/diffusion-grid-banana)
 
