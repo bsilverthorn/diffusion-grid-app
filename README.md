@@ -1,7 +1,7 @@
 Diffusion Grid
 ==============
 
-See: [**diffusion-grid.silverthorn.blog**](https://diffusion-grid.silverthorn.blog)
+~~See: [**diffusion-grid.silverthorn.blog**](https://diffusion-grid.silverthorn.blog)~~ [offline]
 
 See also: [@bsilverthorn/diffusion-grid-banana](https://github.com/bsilverthorn/diffusion-grid-banana)
 
@@ -14,6 +14,10 @@ It visualizes "paths not taken" during the denoising process.
 
 It's a toy because it was built for playing around and building a bit of
 intuition. It's not a tool for research or prompt development.
+
+It looks like this:
+
+![trimmed_dgrid_example](https://github.com/bsilverthorn/diffusion-grid-app/assets/92956/ccd15f8c-39d8-4c95-a6ef-94fed5cd86a4)
 
 Explanation
 -----------
